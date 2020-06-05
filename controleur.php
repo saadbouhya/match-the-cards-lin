@@ -91,7 +91,7 @@ session_start();
 	// On l'extrait donc du chemin du script courant : $_SERVER["PHP_SELF"]
 	// Par exemple, si $_SERVER["PHP_SELF"] vaut /chat/data.php, dirname($_SERVER["PHP_SELF"]) contient /chat
 
-	$urlBase = dirname($_SERVER["PHP_SELF"]) . "/index.php";
+	$urlBase = dirname($_SERVER["PHP_SELF"]) . "main/index.html";
 	// On redirige vers la page index avec les bons arguments
 
 	header("Location:" . $urlBase . $addArgs);

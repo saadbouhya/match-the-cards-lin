@@ -1,3 +1,25 @@
+<?php
+  include_once "libs/maLibUtils.php";
+	include_once "libs/maLibSQL.pdo.php";
+	include_once "libs/maLibSecurisation.php"; 
+  include_once "libs/modele.php";
+  
+  if (isset($_GET['action'])) {
+    $userName        = $_GET['userName'];
+    $password        = $_GET['email'];
+    $userName2        = $_GET['userName2'];
+    $password2        = $_GET['email2'];
+
+    if(verifUserBdd($userName,$password)) {
+      if(verifUserBdd($userName2, $password2)) {
+        header("location: main/index.html");
+      }
+
+    }
+  }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +31,6 @@
    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
 </head>
 <body>
-  
-
   <img src="img3.jpg">
   <header>
     <h2>Match The Cards</h2>
@@ -19,7 +39,7 @@
   <div class="player1">
     <!-- <img src="avatar.png" class="avatar"> -->
         <h1>Player 1</h1>
-        <form action="controleur.php" method="GET">
+        <form action="login.php" method="GET">
             <p>Username</p>
             <input type="text" name="login" placeholder="Enter Username">
             <p>Password</p>
@@ -31,7 +51,7 @@
   <div class="player2">
     <!-- <img src="avatar.png" class="avatar"> -->
         <h1>Player 2</h1>
-        <form action="controleur.php" method="GET">
+        <form action="login.php" method="GET">
             <p>Username</p>
             <input type="text" name="login2" placeholder="Enter Username">
             <p>Password</p>
@@ -43,7 +63,7 @@
   <div class="button">
   <input id="submit" type="button" value="Submit" name="action">
   <br>
-  <a href="signup.html">Don't have an account?</a>
+  <a href="signup.php">Don't have an account?</a>
   </div>
 </body>
 </html>

@@ -19,8 +19,14 @@
       $password        = $_GET['password'];
       $confirmPassword = $_GET['confirmPassword'];
 
-      $sql = "INSERT INTO users (userName, email, password) VALUES('$userName', '$email', '$password')";
+      if ($_GET["password"] === $_GET["confirmPassword"]) {
+        $sql = "INSERT INTO users (userName, email, password) VALUES('$userName', '$email', '$password')";
       SQLInsert($sql);
+      header("location: login.php");
+     }
+      else {
+        $_SESSION['message'] = "The two passwords do not match";
+      }
     }
     ?>
   </div>
