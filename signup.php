@@ -13,13 +13,13 @@
     <?php
     include_once "libs/maLibSQL.pdo.php";
 
-    if(isset($_POST['action'])) {
-      $userName        = $_POST['userName'];
-      $email           = $_POST['email'];
-      $password        = $_POST['password'];
-      $confirmPassword = $_POST['confirmPassword'];
+    if(isset($_GET['action'])) {
+      $userName        = $_GET['userName'];
+      $email           = $_GET['email'];
+      $password        = $_GET['password'];
+      $confirmPassword = $_GET['confirmPassword'];
 
-      $sql = "INSERT INTO users (userName, email, password) VALUES($userName, $email, $password)";
+      $sql = "INSERT INTO users (userName, email, password) VALUES('$userName', '$email', '$password')";
       SQLInsert($sql);
     }
     ?>
@@ -32,7 +32,7 @@
   <div class="player1">
     <!-- <img src="avatar.png" class="avatar"> -->
         <h1>Sign Up</h1>
-        <form action="signup.php" method="post">
+        <form action="signup.php" method="GET">
             <p>Username</p>
             <input type="text" name="userName" placeholder="Enter Username" required>
             <p>Email</p>
