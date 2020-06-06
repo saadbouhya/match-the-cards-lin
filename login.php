@@ -4,19 +4,25 @@
 	include_once "libs/maLibSecurisation.php"; 
   include_once "libs/modele.php";
   
-  if (isset($_GET['action'])) {
-    $userName        = $_GET['userName'];
-    $password        = $_GET['email'];
-    $userName2        = $_GET['userName2'];
-    $password2        = $_GET['email2'];
+  
+    
+    // session_start();
+    // $userName         = $_GET['login'];
+    // $password         = $_GET["form1"]['passe'];
+    // $userName2        = $_GET["form2"]['login2'];
+    // $password2        = $_GET["form2"]['passe2'];
 
-    if(verifUserBdd($userName,$password)) {
-      if(verifUserBdd($userName2, $password2)) {
-        header("location: main/index.html");
-      }
+    //  echo $userName . " " . $userName2 . " " . $password . " " . $password2;
+     print_r($_GET);
+    // if(verifUserBdd($userName,$password) != FALSE) {
+    //   echo "check 1";
+    //   if(verifUserBdd($userName2, $password2) != FALSE) {
+    //     echo "chech 2";
+    //     header("location: main/index.html");
+    //   }
 
-    }
-  }
+    // }
+  
 
 
 ?>
@@ -29,6 +35,12 @@
   <link rel="stylesheet" href="style-login.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+   <script>
+    submitForms = function(){
+    document.getElementById("form1").submit();
+    document.getElementById("form2").submit();
+    }
+   </script>
 </head>
 <body>
   <img src="img3.jpg">
@@ -39,7 +51,7 @@
   <div class="player1">
     <!-- <img src="avatar.png" class="avatar"> -->
         <h1>Player 1</h1>
-        <form action="login.php" method="GET">
+        <form action="login.php" method="GET" id="form1">
             <p>Username</p>
             <input type="text" name="login" placeholder="Enter Username">
             <p>Password</p>
@@ -51,7 +63,7 @@
   <div class="player2">
     <!-- <img src="avatar.png" class="avatar"> -->
         <h1>Player 2</h1>
-        <form action="login.php" method="GET">
+        <form action="login.php" method="GET" id="form2">
             <p>Username</p>
             <input type="text" name="login2" placeholder="Enter Username">
             <p>Password</p>
@@ -61,7 +73,7 @@
     </div>
   </div>
   <div class="button">
-  <input id="submit" type="button" value="Submit" name="action">
+  <input id="submit" type="button" value="Submit" name="action" onclick="submitForms()">
   <br>
   <a href="signup.php">Don't have an account?</a>
   </div>
