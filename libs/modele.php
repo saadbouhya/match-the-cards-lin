@@ -17,7 +17,7 @@ function verifUserBdd($login,$passe)
 	// si on avait besoin de plus d'un champ
 	// on aurait du utiliser SQLSelect
 
-	$SQL ="SELECT id FROM users WHERE userName='$login' AND password='$passe'"; 
+	$SQL ="SELECT idUser FROM users WHERE userName='$login' AND password='$passe'"; 
 
 	return SQLGetChamp($SQL);
 }

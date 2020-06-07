@@ -9,36 +9,14 @@
    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
 </head>
 <body>
-  <div>
-    <?php
-    include_once "libs/maLibSQL.pdo.php";
-
-    if(isset($_GET['action'])) {
-      $userName        = $_GET['userName'];
-      $email           = $_GET['email'];
-      $password        = $_GET['password'];
-      $confirmPassword = $_GET['confirmPassword'];
-
-      if ($_GET["password"] === $_GET["confirmPassword"]) {
-        $sql = "INSERT INTO users (userName, email, password) VALUES('$userName', '$email', '$password')";
-      SQLInsert($sql);
-      header("location: login.php");
-     }
-      else {
-        $_SESSION['message'] = "The two passwords do not match";
-      }
-    }
-    ?>
-  </div>
   <img src="img3.jpg">
   <header>
     <h2></h2>
   </header>
   <div class="playersForm">
   <div class="player1">
-    <!-- <img src="avatar.png" class="avatar"> -->
         <h1>Sign Up</h1>
-        <form action="signup.php" method="GET">
+        <form action="controleur.php" method="GET">
             <p>Username</p>
             <input type="text" name="userName" placeholder="Enter Username" required>
             <p>Email</p>
@@ -47,7 +25,7 @@
             <input type="password" name="password" placeholder="Enter Password" required>
             <p>Confirm Password</p>
             <input type="password" name="confirmPassword" placeholder="Enter Password" required>
-            <input id="submit" type="submit" name="action" value="Sign Up">
+            <input id="submit" type="submit" name="action3" value="Sign Up">
         </form>
     </div>
 

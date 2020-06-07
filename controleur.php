@@ -1,103 +1,67 @@
 <?php
 session_start();
-
+	$choix = 0;
+	$userName3 = '';
 	include_once "libs/maLibUtils.php";
 	include_once "libs/maLibSQL.pdo.php";
 	include_once "libs/maLibSecurisation.php"; 
 	include_once "libs/modele.php"; 
 
-	$addArgs = "";
 
-	if ($action = valider("action"))
-	{
-		ob_start ();
-		echo "Action = '$action' <br />";
-		// ATTENTION : le codage des caractères peut poser PB si on utilise des actions comportant des accents... 
-		// A EVITER si on ne maitrise pas ce type de problématiques
 
-		/* TODO: A REVOIR !!
-		// Dans tous les cas, il faut etre logue... 
-		// Sauf si on veut se connecter (action == Connexion)
+	if(isset($_GET['action'])) $choix = 1;
+	if(isset($_GET['action2'])) $choix = 2;
+	if(isset($_GET['action3'])) $choix = 3;
+	$check = 1;
 
-		if ($action != "Connexion") 
-			securiser("login");
-		*/
 
-		// Un paramètre action a été soumis, on fait le boulot...
-		switch($action)
-		{
+	switch($choix) {
+		case 1: 
+			$userName         = $_GET['login'];
+			$password         = $_GET['passe'];
+			$userName3 = $userName;
 			
+			if(verifUserBdd($userName,$password) == FALSE) {
+						$check = 0; 
+						header("location: login.php");
+			}
+			else {
+				header("location: login.php");
+			}
+		break;
 			
-			// Connexion //////////////////////////////////////////////////
-			case 'Connexion' :
-				// On verifie la presence des champs login et passe
-				if ($login = valider("login"))
-				if ($passe = valider("passe"))
-				{
-					// On verifie l'utilisateur, 
-					// et on crée des variables de session si tout est OK
-					// Cf. maLibSecurisation
-					if (verifUser($login,$passe)) {
-						// tout s'est bien passé, doit-on se souvenir de la personne ? 
-						if (valider("remember")) {
-							setcookie("login",$login , time()+60*60*24*30);
-							setcookie("passe",$password, time()+60*60*24*30);
-							setcookie("remember",true, time()+60*60*24*30);
-						} else {
-							setcookie("login","", time()-3600);
-							setcookie("passe","", time()-3600);
-							setcookie("remember",false, time()-3600);
-						}
+		case 2:
+			$userName2         = $_GET['login2'];
+			$password2         = $_GET['passe2'];
+			
+			if(verifUserBdd($userName2,$password2) != FALSE && $check == 1) {
+						/****************** initialisation de partie*******************************/
+						$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName3' ";
+						$sql2 = "SELECT idUser FROM users WHERE userName LIKE '$userName2' ";
+						$id1 = SQLGetChamp($sql1);
+						$id2 = SQLGetChamp($sql2);
+						$sql = "INSERT INTO parties (idUser1, idUser2) VALUES ($id1, $id2)";
+						SQLInsert($sql);
+						/*************/
+						header("location: main/index.html");
+			}
+		break;
 
-					}	
+		case 3:
+				$userName        = $_GET['userName'];
+				$email           = $_GET['email'];
+				$password        = $_GET['password'];
+				$confirmPassword = $_GET['confirmPassword'];
+	
+				if ($_GET["password"] === $_GET["confirmPassword"]) {
+					$sql = "INSERT INTO users (userName, email, password) VALUES('$userName', '$email', '$password')";
+				SQLInsert($sql);
+				header("location: login.php");
+			 }
+				else {
+					$_SESSION['message'] = "The two passwords do not match";
 				}
-
-				if ($login2 = valider("login2"))
-				if ($passe2 = valider("passe2"))
-				{
-					// On verifie l'utilisateur, 
-					// et on crée des variables de session si tout est OK
-					// Cf. maLibSecurisation
-					if (verifUser($login2,$passe2)) {
-						// tout s'est bien passé, doit-on se souvenir de la personne ? 
-						if (valider("remember")) {
-							setcookie("login2",$login2 , time()+60*60*24*30);
-							setcookie("passe2",$password2, time()+60*60*24*30);
-							setcookie("remember",true, time()+60*60*24*30);
-						} else {
-							setcookie("login2","", time()-3600);
-							setcookie("passe2","", time()-3600);
-							setcookie("remember",false, time()-3600);
-						}
-
-					}	
-				}
-
-				// On redirigera vers la page index automatiquement
-			break;
-
-			case 'Logout' :
-				session_destroy();
-			break;
-
-
-
-
-		}
-
 	}
-
-	// On redirige toujours vers la page index, mais on ne connait pas le répertoire de base
-	// On l'extrait donc du chemin du script courant : $_SERVER["PHP_SELF"]
-	// Par exemple, si $_SERVER["PHP_SELF"] vaut /chat/data.php, dirname($_SERVER["PHP_SELF"]) contient /chat
-
-	$urlBase = dirname($_SERVER["PHP_SELF"]) . "main/index.html";
-	// On redirige vers la page index avec les bons arguments
-
-	header("Location:" . $urlBase . $addArgs);
-
-	// On écrit seulement après cette entête
-	ob_end_flush();
 	
 ?>
 

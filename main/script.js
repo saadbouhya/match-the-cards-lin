@@ -31,6 +31,8 @@ class AudioController {
     }
 }
 
+results = Array();
+
 class MixOrMatch {
     constructor(totalTime, cards) {
         this.cardsArray = cards;
@@ -39,6 +41,10 @@ class MixOrMatch {
         this.timer = document.getElementById('time-remaining')
         this.ticker = document.getElementById('flips');
         this.audioController = new AudioController();
+    }
+
+    getTotalClicks(){
+        return this.ticker.innerText;
     }
 
     startGame() {
@@ -74,6 +80,8 @@ class MixOrMatch {
         clearInterval(this.countdown);
         this.audioController.victory();
         document.getElementById('victory-text').classList.add('visible');
+        results.push([document.getElementById('flips').innerText, document.getElementById('time-remaining').innerText]);
+
     }
     hideCards() {
         this.cardsArray.forEach(card => {
@@ -138,7 +146,7 @@ class MixOrMatch {
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 } else {
-    ready();
+    ready2(function(){winner(results)});
 }
 
 function ready() {
@@ -146,16 +154,91 @@ function ready() {
     let cards = Array.from(document.getElementsByClassName('card'));
     let game = new MixOrMatch(100, cards);
 
-    overlays.forEach(overlay => {
+    /*overlays.forEach(overlay => {
         overlay.addEventListener('click', () => {
             overlay.classList.remove('visible');
             game.startGame();
         });
-    });
+    });*/
+    
 
     cards.forEach(card => {
         card.addEventListener('click', () => {
             game.flipCard(card);
         });
     });
+    f1 = document.getElementById("flips").innerText;
+    t1 = document.getElementById("time-remaining").innerText;
 }
+
+
+function round(player){
+    let playerBackground = document.getElementById(player);
+    let cards = Array.from(document.getElementsByClassName('card'));
+    let game = new MixOrMatch(100, cards);
+    playerBackground.classList.add("visible");
+    playerBackground.addEventListener("click", function (){
+        playerBackground.addEventListener('click', playerBackground.classList.remove('visible'));
+        game.startGame();
+        cards.forEach(card => {
+        card.addEventListener('click', () => {
+            game.flipCard(card);
+        });
+        });
+    });
+}
+
+
+
+function ready2(){
+    var end = false;
+    round('p1');
+    document.getElementById('victory-text').addEventListener("click", function (){
+        document.getElementById('victory-text').classList.remove('visible');
+        if (end == false){
+            round('p2');
+            end = true;
+            document.getElementById('victory-text').addEventListener('click', function(){winner(results)});
+        }
+
+    });
+
+
+}
+
+function winnerRound(results) {
+    if(results[0][1] == 0 && results[1][1] != 0){ // No time left player 1
+        return "Player 2";
+    }else if (results[0][1] != 0 && results[1][1] == 0){ // No time left player 2 
+        return "Player 1"
+    }else if (results[0][1] == 0 && results[1][1] == 0){ // No time left for both
+        return "Tie"
+    }else if (results[0][0] > results[1][0]){ // Player 1 filps > Player 2 flips
+        return "Player 2"
+    }else if (results[0][0] < results[1][0]){ // Player 1 filps < Player 2 flips
+        return "Player 1"
+    }else{ // Same numbers of flips for both compare time
+        if (results[0][1] < results[1][1]){ // Player 2 time re< Player 1 time re
+            return "Player 2"
+        }else if (results[0][1] > results[1][1]){ // Player 2 time re> Player 1 time re
+            return "Player 1"
+        }else{
+            return "Tie"
+        }
+    }
+}
+
+function winner(results){
+    document.getElementById("winner").classList.add("visible");
+    document.getElementById("playerW").innerText = winnerRound(results);
+}
+
+
+
+
+
+
+
+
+
+
