@@ -13,13 +13,14 @@ session_start();
 	if(isset($_GET['action2'])) $choix = 2;
 	if(isset($_GET['action3'])) $choix = 3;
 	$check = 1;
+	$userName = ' ';
 
 
 	switch($choix) {
 		case 1: 
 			$userName         = $_GET['login'];
 			$password         = $_GET['passe'];
-			$userName3 = $userName;
+			global $userName;
 			
 			if(verifUserBdd($userName,$password) == FALSE) {
 						$check = 0; 
@@ -36,12 +37,12 @@ session_start();
 			
 			if(verifUserBdd($userName2,$password2) != FALSE && $check == 1) {
 						/****************** initialisation de partie*******************************/
-						$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName3' ";
+						$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
 						$sql2 = "SELECT idUser FROM users WHERE userName LIKE '$userName2' ";
 						$id1 = SQLGetChamp($sql1);
 						$id2 = SQLGetChamp($sql2);
-						$sql = "INSERT INTO parties (idUser1, idUser2) VALUES ($id1, $id2)";
-						SQLInsert($sql);
+						echo " the value is " . $GLOBALS['userName'];
+						insertPartie($id1, $id2);
 						/*************/
 						header("location: main/index.html");
 			}
@@ -54,9 +55,8 @@ session_start();
 				$confirmPassword = $_GET['confirmPassword'];
 	
 				if ($_GET["password"] === $_GET["confirmPassword"]) {
-					$sql = "INSERT INTO users (userName, email, password) VALUES('$userName', '$email', '$password')";
-				SQLInsert($sql);
-				header("location: login.php");
+					insertUser ($userName, $email, $password);
+					header("location: login.php");
 			 }
 				else {
 					$_SESSION['message'] = "The two passwords do not match";

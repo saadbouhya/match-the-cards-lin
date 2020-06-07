@@ -29,40 +29,16 @@ function isAdmin($idUser)
 	return SQLGetChamp($SQL);
 }
 
-function getProduits() {
-	// Liste les produits de la bdd
+/******** Pour inserer une nouvelle partie dans le tableau */
+function insertPartie($id1, $id2) {
+	$sql = "INSERT INTO parties (idUser1,idUser2) VALUES ($id1, $id2)";
+	SQLInsert($sql);
+} 
+/******** Pour inserer un nouveau utilisateur  */
+function insertUser ($userName, $email, $password) {
+	$sql = "INSERT INTO users (userName, email, password) VALUES('$userName', '$email', '$password')";
+	SQLInsert($sql);
 }
-
-function addProduit($idCommande, $idProduit, $quantite) {
-	// Ajoute un produit à une commande
-}
-
-function delProduit($idCommande, $idProduit) {
-	// Supprime un produit d'une commande
-}
-
-function creerCommande() {
-	// Crée une nouvelle commande et renvoie son id
-}
-
-function getCommandes($etat) {
-	// Affiche toutes les commandes dont l'état correspond à l'état passé en paramètre
-}
-
-function getCommandesUser($idUser) {
-	// Affiche toutes les commandes de l'utilisateur passé en paramètre
-}
-
-function validerCommande($idCommande) {
-	// Valide une commande
-}
-
-function finaliserCommande($idCommande) {
-	// Finalise une commande
-}
-
-
-// A compléter...
 
 
 

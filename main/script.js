@@ -32,6 +32,8 @@ class AudioController {
 }
 
 results = Array();
+gameOver = false;
+
 
 class MixOrMatch {
     constructor(totalTime, cards) {
@@ -75,6 +77,8 @@ class MixOrMatch {
         clearInterval(this.countdown);
         this.audioController.gameOver();
         document.getElementById('game-over-text').classList.add('visible');
+        results.push([document.getElementById('flips').innerText, document.getElementById('time-remaining').innerText]);
+        gameOver = true;
     }
     victory() {
         clearInterval(this.countdown);
@@ -197,13 +201,23 @@ function ready2(){
         document.getElementById('victory-text').classList.remove('visible');
         if (end == false){
             round('p2');
+            p2Round = true;
             end = true;
             document.getElementById('victory-text').addEventListener('click', function(){winner(results)});
+            document.getElementById('game-over-text').addEventListener('click', function(){winner(results)});
         }
 
     });
-
-
+    document.getElementById('game-over-text').addEventListener("click", function (){
+        document.getElementById('game-over-text').classList.remove('visible');
+        if (end == false){
+            round('p2');
+            p2Round = true;
+            end = true;
+            document.getElementById('victory-text').addEventListener('click', function(){winner(results)});
+            document.getElementById('game-over-text').addEventListener('click', function(){winner(results)});
+        }
+    });
 }
 
 function winnerRound(results) {

@@ -15,7 +15,6 @@
   </header>
   <div class="playersForm">
   <div class="player1">
-    <!-- <img src="avatar.png" class="avatar"> -->
         <h1>Player 1</h1>
         <form action="controleur.php" method="GET" id="form1">
             <p>Username</p>
@@ -29,7 +28,6 @@
     </div>
 
   <div class="player2">
-    <!-- <img src="avatar.png" class="avatar"> -->
         <h1>Player 2</h1>
         <form action="controleur.php" method="GET" id="form2">
             <p>Username</p>
