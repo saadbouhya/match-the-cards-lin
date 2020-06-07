@@ -20,10 +20,13 @@ session_start();
 		case 1: 
 			$userName         = $_GET['login'];
 			$password         = $_GET['passe'];
-			global $userName;
+			$userName;
 			
 			if(verifUserBdd($userName,$password) == FALSE) {
 						$check = 0; 
+						$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
+						$id1 = SQLGetChamp($sql1);
+						//insertPartie($id1);
 						header("location: login.php");
 			}
 			else {
@@ -37,13 +40,14 @@ session_start();
 			
 			if(verifUserBdd($userName2,$password2) != FALSE && $check == 1) {
 						/****************** initialisation de partie*******************************/
-						$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
+						// $sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
 						$sql2 = "SELECT idUser FROM users WHERE userName LIKE '$userName2' ";
-						$id1 = SQLGetChamp($sql1);
+						// $id1 = SQLGetChamp($sql1);
 						$id2 = SQLGetChamp($sql2);
-						echo " the value is " . $GLOBALS['userName'];
-						insertPartie($id1, $id2);
+						// echo " the value is " . $GLOBALS['userName'];
+						// insertPartie($id1, $id2);
 						/*************/
+						//$sql = "UPDATE parties SET idUser2 = $id2 WHERE idPartie = LAST_INSERT_ID()'";
 						header("location: main/index.html");
 			}
 		break;
