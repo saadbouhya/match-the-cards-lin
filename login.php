@@ -11,38 +11,30 @@
 <body>
   <img src="img3.jpg">
   <header>
-    <h2>Match The Cards</h2>
+    <h2></h2>
   </header>
   <div class="playersForm">
   <div class="player1">
-        <h1>Player 1</h1>
-        <form action="controleur.php" method="GET" id="form1">
+        <h1>Player1</h1>
+        <form action="controleur.php" method="GET">
             <p>Username</p>
-            <input type="text" name="login" placeholder="Enter Username">
+            <input type="text" name="userName" placeholder="Enter Username" required>
             <p>Password</p>
-            <input type="password" name="passe" placeholder="Enter Password">
-            <div class="button">
-            <input id="submit" type="submit" name="action" value="Login1">
+            <input type="password" name="passe" placeholder="Enter Password" required>
+            <h1>Player2</h1>
+            <p>Username</p>
+            <input type="text" name="userName2" placeholder="Enter Username" required>
+            <p>Password</p>
+            <input type="password" name="passe2" placeholder="Enter Password" required>
+            <input id="submit" type="submit" name="action" value="Login">
+            <div id="link">
+              <a href="signup.php">Don't have an account?</a>  
             </div>
+            
         </form>
     </div>
 
-  <div class="player2">
-        <h1>Player 2</h1>
-        <form action="controleur.php" method="GET" id="form2">
-            <p>Username</p>
-            <input type="text" name="login2" placeholder="Enter Username">
-            <p>Password</p>
-            <input type="password" name="passe2" placeholder="Enter Password">
-            <div class="button">
-            <input  id="submit" type="submit" name="action2" value="Login2">
-            </div>
-        </form>
-    </div>
-  </div> 
-  <div class="button">
-  <br>
-  <a href="signup.php">Don't have an account?</a>
-  </div>
+  
+  
 </body>
 </html>

@@ -30,10 +30,9 @@ function isAdmin($idUser)
 }
 
 /******** Pour inserer une nouvelle partie dans le tableau */
-function insertPartie($id1) {
-	$sql = "INSERT INTO parties (idUser1) VALUES ($id1)";
+function insertPartie($id1,$id2) {
+	$sql = "INSERT INTO parties (idUser1,idUser2) VALUES ($id1,$id2)";
 	SQLInsert($sql);
-	echo "IT WORKS";
 } 
 /******** Pour inserer un nouveau utilisateur  */
 function insertUser ($userName, $email, $password) {

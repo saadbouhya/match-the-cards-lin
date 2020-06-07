@@ -1,7 +1,5 @@
 <?php
 session_start();
-	$choix = 0;
-	$userName3 = '';
 	include_once "libs/maLibUtils.php";
 	include_once "libs/maLibSQL.pdo.php";
 	include_once "libs/maLibSecurisation.php"; 
@@ -18,18 +16,26 @@ session_start();
 
 	switch($choix) {
 		case 1: 
-			$userName         = $_GET['login'];
+			$userName         = $_GET['userName'];
 			$password         = $_GET['passe'];
-			$userName;
+			$userName2         = $_GET['userName2'];
+			$password2         = $_GET['passe2'];
 			
-			if(verifUserBdd($userName,$password) == FALSE) {
-						$check = 0; 
-						$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
-						$id1 = SQLGetChamp($sql1);
-						//insertPartie($id1);
-						header("location: login.php");
+			echo "IT WRKS";
+			if(verifUserBdd($userName,$password) != FALSE) {
+				if(verifUserBdd($userName2,$password2) != FALSE) {				
+					$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
+					$sql2 = "SELECT idUser FROM users WHERE userName LIKE '$userName2' ";
+					$id1 = SQLGetChamp($sql1);
+					$id2 = SQLGetChamp($sql2);
+					insertPartie($id1, $id2);
+
+
+					header("location: main/index.html");
+				}
 			}
 			else {
+				echo "WRONG";
 				header("location: login.php");
 			}
 		break;
@@ -40,12 +46,12 @@ session_start();
 			
 			if(verifUserBdd($userName2,$password2) != FALSE && $check == 1) {
 						/****************** initialisation de partie*******************************/
-						// $sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
+						$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
 						$sql2 = "SELECT idUser FROM users WHERE userName LIKE '$userName2' ";
-						// $id1 = SQLGetChamp($sql1);
+						$id1 = SQLGetChamp($sql1);
 						$id2 = SQLGetChamp($sql2);
 						// echo " the value is " . $GLOBALS['userName'];
-						// insertPartie($id1, $id2);
+						insertPartie($id1, $id2);
 						/*************/
 						//$sql = "UPDATE parties SET idUser2 = $id2 WHERE idPartie = LAST_INSERT_ID()'";
 						header("location: main/index.html");
