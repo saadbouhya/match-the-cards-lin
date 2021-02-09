@@ -9,7 +9,7 @@ session_start();
 
 	if(isset($_GET['action'])) $choix = 1;
 	if(isset($_GET['action2'])) $choix = 2;
-	if(isset($_GET['action3'])) $choix = 3;
+
 	$check = 1;
 	$userName = ' ';
 
@@ -21,7 +21,7 @@ session_start();
 			$userName2         = $_GET['userName2'];
 			$password2         = $_GET['passe2'];
 			
-			echo "IT WRKS";
+			
 			if(verifUserBdd($userName,$password) != FALSE) {
 				if(verifUserBdd($userName2,$password2) != FALSE) {				
 					$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
@@ -31,49 +31,35 @@ session_start();
 					insertPartie($id1, $id2);
 
 
-					header("location: main/index.html");
+					header("location: main.html");
 				}
 			}
 			else {
-				echo "WRONG";
-				header("location: login.php");
+				
+				header("location: index.php");
 			}
 		break;
 			
 		case 2:
-			$userName2         = $_GET['login2'];
-			$password2         = $_GET['passe2'];
-			
-			if(verifUserBdd($userName2,$password2) != FALSE && $check == 1) {
-						/****************** initialisation de partie*******************************/
-						$sql1 = "SELECT idUser FROM users WHERE userName LIKE '$userName' ";
-						$sql2 = "SELECT idUser FROM users WHERE userName LIKE '$userName2' ";
-						$id1 = SQLGetChamp($sql1);
-						$id2 = SQLGetChamp($sql2);
-						// echo " the value is " . $GLOBALS['userName'];
-						insertPartie($id1, $id2);
-						/*************/
-						//$sql = "UPDATE parties SET idUser2 = $id2 WHERE idPartie = LAST_INSERT_ID()'";
-						header("location: main/index.html");
-			}
-		break;
-
-		case 3:
-				$userName        = $_GET['userName'];
+			$userName        = $_GET['userName'];
 				$email           = $_GET['email'];
 				$password        = $_GET['password'];
 				$confirmPassword = $_GET['confirmPassword'];
 	
 				if ($_GET["password"] === $_GET["confirmPassword"]) {
 					insertUser ($userName, $email, $password);
-					header("location: login.php");
+					header("location: index.php");
 			 }
 				else {
 					$_SESSION['message'] = "The two passwords do not match";
 				}
+		break;
+
+		
 	}
 	
 ?>
+
 
 
 

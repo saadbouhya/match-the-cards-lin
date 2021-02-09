@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <script src="script.js" async></script>
+  <title>Match The Cards</title>
+</head>
+<body>
+  
+  <div class="presentation">
+  <img class="logo" src="Assets/Images/image.png" alt="logo">
+  <h1 class="page-title">Match The Cards</h1>
+  </div>
+  <div class="overlay-text">
+    Click to Start
+  </div>
+  <div class="overlay-text" id="p1">
+    Player 1
+  </div>
+  <div class="overlay-text" id="p2">
+    Player 2
+  </div>
+  <div id="game-over-text" class="overlay-text">
+    Click
+    <span class="overlay-text-small"></span>
+  </div>
+  <div id="victory-text" class="overlay-text">
+    END OF ROUND
+    <!--<span class="overlay-text-small">Click to Restart</span>-->
+  </div>
+  <div id="winner" class="overlay-text">
+    The winner is: 
+    <span class="overlay-text-small" id="playerW">Tie</span>
+  </div>
+
+  <div class="game-container">
+    <div class="game-info-container">
+      <div class="game-info">
+        Time <span id="time-remaining">150</span>
+      </div>
+      <div class="game-info">
+        Flips <span id="flips">0</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/board.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/board.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/brain.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/brain.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/chess.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/chess.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/puzzle.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/puzzle.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/poker.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/poker.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/scrabble.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/scrabble.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+
+        <img class="card-value" src="Assets/Images/quiz.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+
+        <img class="card-value" src="Assets/Images/quiz.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+
+        <img class="card-value" src="Assets/Images/monopoly.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+
+        <img class="card-value" src="Assets/Images/monopoly.png">
+      </div>
+    </div>
+        <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/github.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/github.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/cube.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/cube.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/gameover.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/gameover.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/controller.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/controller.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/pi.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/pi.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/tictac.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+        <img class="card-value" src="Assets/Images/tictac.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+
+        <img class="card-value" src="Assets/Images/way.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+
+        <img class="card-value" src="Assets/Images/way.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+
+        <img class="card-value" src="Assets/Images/linux.png">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-back card-face">
+        <img src="Assets/Images/rsz_image.png">
+      </div>
+      <div class="card-front card-face">
+
+        <img class="card-value" src="Assets/Images/linux.png">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

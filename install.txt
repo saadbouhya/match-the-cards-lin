@@ -1,0 +1,22 @@
+Démarches d'installation:
+
+ 
+- Décompressez l'archive et placez le sur votre host
+
+- Il faut ensuite créer une base de données sur PhpMyadmin puis y exporter la base de donné issu du fichier match-the-cards.sql
+
+- accéder ensuite au le fichier config.php present dans le répertoire libs pour attribuer vos identifiants.
+
+- Accedez au dossier sur votre host.
+
+- Pour le login inserez : username : saad          mdp: hello
+			  username: tom            mdp: hello
+				
+			
+	******************** HAVE A NICE GAME!! ********************
+
+
+
+
+
+
